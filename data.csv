@@ -1,0 +1,35 @@
+location,id,name,date,value,details
+outpatient,op_01,Total Visits,2024-03-01,1280,"General: 850, Specialist: 320, Telehealth: 110"
+outpatient,op_02,Avg Wait Time (Min),2024-03-01,38,"Morning: 45m, Afternoon: 32m, Evening: 25m"
+outpatient,op_03,Staff On Duty,2024-03-01,26,"Doctors: 6, Nurses: 12, Administrative: 4, Support: 4, new entry : 50"
+outpatient,op_04,Follow-ups Scheduled,2024-03-01,412,"Chronic: 180, Post-Op: 132, Routine: 100"
+emergency,er_01,Triage Accuracy (%),2024-03-01,95,"Level 1: 100%, Level 2: 98%, Level 3: 92%"
+emergency,er_02,LWBS Rate (%),2024-03-01,3.1,Left Without Being Seen: 12 patients total this month
+emergency,er_03,Critical Arrivals,2024-03-01,88,"Trauma: 24, Cardiac: 32, Respiratory: 20, Other: 12"
+emergency,er_04,ER-to-Admit Time,2024-03-01,145,Avg mins from decision to bed placement
+inpatient,ip_01,Bed Occupancy (%),2024-03-01,91,"ICU: 95%, Medical: 88%, Surgical: 92%"
+inpatient,ip_02,Readmission Rate (%),2024-03-01,10.8,Target: <12%. Major causes: Medication non-compliance (40%)
+inpatient,ip_03,Daily Discharges,2024-03-01,32,"AM Discharges: 12, PM Discharges: 20"
+inpatient,ip_04,Patient Falls /1k,2024-03-01,1.2,Total falls: 4. All without injury.
+operations,ot_01,Theater Utilization (%),2024-03-01,85,"Room A: 90%, Room B: 82%, Room C: 83%"
+operations,ot_02,Cancellation Rate (%),2024-03-01,4.2,"Clinical: 2, Patient Choice: 5, Equipment: 1"
+operations,ot_03,Total Surgeries,2024-03-01,215,"Elective: 160, Emergency: 55"
+operations,ot_04,Avg Prep Time (Min),2024-03-01,55,Target: 45m. Cleaning time remains the main delay factor.
+outpatient,op_01,Total Visits,2024-02-01,1280,"General: 850, Specialist: 320, Telehealth: 110"
+outpatient,op_02,Avg Wait Time (Min),2024-02-01,38,"Morning: 45m, Afternoon: 32m, Evening: 25m"
+outpatient,op_03,Staff On Duty,2024-02-01,26,"Doctors: 6, Nurses: 12, Administrative: 4, Support: 4, new entry : 50"
+outpatient,op_04,Follow-ups Scheduled,2024-02-01,412,"Chronic: 180, Post-Op: 132, Routine: 100"
+emergency,er_01,Triage Accuracy (%),2024-02-01,95,"Level 1: 100%, Level 2: 98%, Level 3: 92%"
+emergency,er_02,LWBS Rate (%),2024-02-01,3.1,Left Without Being Seen: 12 patients total this month
+emergency,er_03,Critical Arrivals,2024-02-01,88,"Trauma: 24, Cardiac: 32, Respiratory: 20, Other: 12"
+emergency,er_04,ER-to-Admit Time,2024-02-01,145,Avg mins from decision to bed placement
+inpatient,ip_01,Bed Occupancy (%),2024-02-01,91,"ICU: 95%, Medical: 88%, Surgical: 92%"
+inpatient,ip_02,Readmission Rate (%),2024-02-01,10.8,Target: <12%. Major causes: Medication non-compliance (40%)
+inpatient,ip_03,Daily Discharges,2024-02-01,32,"AM Discharges: 12, PM Discharges: 20"
+inpatient,ip_04,Patient Falls /1k,2024-02-01,1.2,Total falls: 4. All without injury.
+operations,ot_01,Theater Utilization (%),2024-02-01,85,"Room A: 90%, Room B: 82%, Room C: 83%"
+operations,ot_02,Cancellation Rate (%),2024-02-01,4.2,"Clinical: 2, Patient Choice: 5, Equipment: 1"
+operations,ot_03,Total Surgeries,2024-02-01,215,"Elective: 160, Emergency: 55"
+operations,ot_04,Avg Prep Time (Min),2024-02-01,55,Target: 45m. Cleaning time remains the main delay factor.
+outpatient,Op_05,New Entry,2024-02-01,412,"New: 1, new:2, new:3"
+outpatient,Op_05,New Entry,2024-03-01,412,"New: 1, new:2, new:3"
