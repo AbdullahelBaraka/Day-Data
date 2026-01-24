@@ -1,0 +1,15 @@
+location,id,name,date,value,details
+outpatient,op_01,Rate,2026-01-24,786,"AM : 533, PM : 253"
+outpatient,op_02,Slots,2026-01-24,38,"AM : 11, PM : 5"
+outpatient,op_03,Waiting 2-5,2026-01-24,26,No Wait
+outpatient,op_04,Waiting > 5,2026-01-24,412,Neurosurgery
+emergency,er_01,Rate,2026-01-24,225,No Further Data
+emergency,er_02,Admission,2026-01-24,16,"Inpatient : 15, ICU : 1"
+emergency,er_03,Waiting,2026-01-24,2,"First Patient : Data, Second Patient : Data"
+emergency,er_04,Accepted Referals,2026-01-24,0,No Further Data
+inpatient,ip_01,Bed Occupancy (%),2026-01-24,95,"IP : 85/94, ICU : 37/39, NICU : 13/13 +1 Capsule"
+inpatient,ip_02,Long Stay 5-7,2026-01-24,0,No Further Data
+inpatient,ip_03,Long Stay > 7,2026-01-24,5,"حليمة احمد | 33 يوم | نسا , احمد ابو المجد | 24 يوم | تجميل , نعمة عبدالهادى | 13 يوم | صدرية , حسن عبده | 8 يوم | قسم , محارب عزيز | 10 | قسم "
+operations,ot_01,Total Surgeries,2026-01-24,15,"Ortho : 8, Plastic : 2, General Surgery : 3, Maxilo : 1, Obs : 1"
+operations,ot_02,Total By Source,2026-01-24,15,"Emergency : 5, Elective : 10"
+operations,ot_03,Total By Category,2026-01-24,15,"High : 3, Moderate : 4, Low : 8"
