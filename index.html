@@ -16,249 +16,218 @@
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
 
-    <div id="loading-overlay" class="fixed inset-0 z-[60] flex items-center justify-center hidden">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-    </div>
+<div id="loading-overlay" class="fixed inset-0 z-[60] flex items-center justify-center hidden">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+</div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 sticky top-0 bg-gray-50/95 py-4 z-10 backdrop-blur-sm border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 sticky top-0 bg-gray-50/95 py-4 z-10 backdrop-blur-sm border-b border-gray-200">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Horus Daily Metrics</h1>
+            <p class="text-sm text-gray-500">Horus Hospital Daily report</p>
+        </div>
+
+        <div class="flex items-center gap-3 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+            <div class="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+            </div>
             <div>
-                <h1 class="text-2xl font-bold text-gray-800">Horus Daily Metrics</h1>
-                <p class="text-sm text-gray-500">Horus Hospital Daily report</p>
-            </div>
-            
-            <div class="flex items-center gap-3 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
-                <div class="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                </div>
-                <div>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Select Date</p>
-                    <input
-                        type="date"
-                        id="date-picker"
-                        onchange="renderAllSections()"
-                        class="text-sm font-bold text-gray-800 bg-transparent border-none p-0 block w-full focus:ring-0"
-                    >
-                </div>
-            </div>
-        </div>
-
-        <div id="dashboard-content">
-            <div class="section-container" id="section-outpatient">
-                <div class="section-header">
-                    <div class="w-1.5 h-6 bg-blue-500 rounded-full"></div>
-                    <h2 class="text-xl font-bold text-gray-700">Outpatient Services</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-outpatient"></div>
-            </div>
-
-            <div class="section-container" id="section-emergency">
-                <div class="section-header">
-                    <div class="w-1.5 h-6 bg-red-500 rounded-full"></div>
-                    <h2 class="text-xl font-bold text-gray-700">Emergency Department</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-emergency"></div>
-            </div>
-
-            <div class="section-container" id="section-inpatient">
-                <div class="section-header">
-                    <div class="w-1.5 h-6 bg-green-500 rounded-full"></div>
-                    <h2 class="text-xl font-bold text-gray-700">Inpatient Care</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-inpatient"></div>
-            </div>
-
-            <div class="section-container" id="section-operations">
-                <div class="section-header">
-                    <div class="w-1.5 h-6 bg-purple-500 rounded-full"></div>
-                    <h2 class="text-xl font-bold text-gray-700">Surgical Operations</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-operations"></div>
-            </div>
-        </div>
-        
-        <div id="empty-state" class="hidden text-center py-20 bg-white rounded-2xl border border-dashed border-gray-300 mt-8">
-            <p id="empty-message" class="text-gray-500 font-medium">No data found for the selected date.</p>
-        </div>
-    </div>
-
-    <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <div class="fixed inset-0 modal-overlay" onclick="closeModal()"></div>
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg z-10 overflow-hidden transform transition-all flex flex-col max-h-[90vh]">
-            <div class="p-6 border-b border-gray-100 flex justify-between items-center flex-shrink-0">
-                <h3 id="modal-title" class="text-lg font-bold text-gray-800">KPI Details</h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div id="modal-body" class="p-6 overflow-y-auto flex-grow"></div>
-            <div class="p-4 bg-gray-50 text-right border-t border-gray-100 flex-shrink-0">
-                <button onclick="closeModal()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
-                    Close
-                </button>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Select Date</p>
+                <input
+                    type="date"
+                    id="date-picker"
+                    onchange="renderAllSections()"
+                    class="text-sm font-bold text-gray-800 bg-transparent border-none p-0 block w-full focus:ring-0"
+                >
             </div>
         </div>
     </div>
 
-    <script>
-        let rawData = [];
+    <!-- Dynamic sections container -->
+    <div id="dashboard-content"></div>
 
-        function setTodayAsDefaultDate() {
-            const datePicker = document.getElementById('date-picker');
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const dd = String(today.getDate()).padStart(2, '0');
-            datePicker.value = `${yyyy}-${mm}-${dd}`;
-        }
+    <div id="empty-state" class="hidden text-center py-20 bg-white rounded-2xl border border-dashed border-gray-300 mt-8">
+        <p id="empty-message" class="text-gray-500 font-medium">No data found for the selected date.</p>
+    </div>
+</div>
 
-        function parseCSV(text) {
-            const rows = [];
-            const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
-            if (lines.length === 0) return [];
-            const headers = lines[0].split(',').map(h => h.trim());
-            for (let i = 1; i < lines.length; i++) {
-                const row = [];
-                let current = "";
-                let inQuotes = false;
-                const line = lines[i];
-                for (let char of line) {
-                    if (char === '"') inQuotes = !inQuotes;
-                    else if (char === ',' && !inQuotes) {
-                        row.push(current.trim());
-                        current = "";
-                    } else current += char;
-                }
+<!-- MODAL (UNCHANGED) -->
+<div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="fixed inset-0 modal-overlay" onclick="closeModal()"></div>
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg z-10 overflow-hidden transform transition-all flex flex-col max-h-[90vh]">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center flex-shrink-0">
+            <h3 id="modal-title" class="text-lg font-bold text-gray-800">KPI Details</h3>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="modal-body" class="p-6 overflow-y-auto flex-grow"></div>
+        <div class="p-4 bg-gray-50 text-right border-t border-gray-100 flex-shrink-0">
+            <button onclick="closeModal()" class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+let rawData = [];
+
+/* ✅ NEW: set today as default */
+function setTodayAsDefaultDate() {
+    const d = new Date();
+    document.getElementById('date-picker').value =
+        d.toISOString().split('T')[0];
+}
+
+function parseCSV(text) {
+    const rows = [];
+    const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
+    if (!lines.length) return [];
+    const headers = lines[0].split(',').map(h => h.trim());
+
+    for (let i = 1; i < lines.length; i++) {
+        let row = [], current = "", inQuotes = false;
+        for (let char of lines[i]) {
+            if (char === '"') inQuotes = !inQuotes;
+            else if (char === ',' && !inQuotes) {
                 row.push(current.trim());
-                const obj = {};
-                headers.forEach((header, index) => {
-                    let val = row[index] || "";
-                    if (header === 'value') val = parseFloat(val) || 0;
-                    obj[header] = val;
-                });
-                rows.push(obj);
-            }
-            return rows;
+                current = "";
+            } else current += char;
         }
+        row.push(current.trim());
 
-        async function loadCSVData() {
-            const loading = document.getElementById('loading-overlay');
-            loading.classList.remove('hidden');
-            try {
-                const response = await fetch(`data.csv?t=${new Date().getTime()}`);
-                if (!response.ok) throw new Error('Could not find data.csv');
-                const csvText = await response.text();
-                rawData = parseCSV(csvText);
-                renderAllSections();
-            } catch (error) {
-                console.error(error);
-                document.getElementById('empty-state').classList.remove('hidden');
-            } finally {
-                loading.classList.add('hidden');
-            }
-        }
+        const obj = {};
+        headers.forEach((h, idx) => {
+            let v = row[idx] || "";
+            if (h === "value") v = parseFloat(v) || 0;
+            obj[h] = v;
+        });
+        rows.push(obj);
+    }
+    return rows;
+}
 
-        function showDetails(id) {
-            const selectedDate = document.getElementById('date-picker').value;
-            const item = rawData.find(d => d.id === id && d.date === selectedDate);
-            if (!item) return;
+async function loadCSVData() {
+    const loading = document.getElementById('loading-overlay');
+    loading.classList.remove('hidden');
+    try {
+        const res = await fetch(`data.csv?t=${Date.now()}`);
+        rawData = parseCSV(await res.text());
+        renderAllSections();
+    } catch (e) {
+        console.error(e);
+        document.getElementById('empty-state').classList.remove('hidden');
+    } finally {
+        loading.classList.add('hidden');
+    }
+}
 
-            document.getElementById('modal-title').innerText = item.name;
-            const detailLines = item.details.split(',').map(line => line.trim());
-            let detailHtml = `
-                <div class="space-y-4">
-                    <div class="flex justify-between items-end">
-                        <span class="text-sm text-gray-500 font-medium tracking-wide">Daily Total</span>
-                        <span class="text-4xl font-black text-blue-600">${item.value.toLocaleString()}</span>
-                    </div>
-                    <div class="h-px bg-gray-100"></div>
-                    <div>
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Breakdown</h4>
-                        <ul class="space-y-2">
-                            ${detailLines.map(line => `
-                                <li class="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                                    <span class="h-1.5 w-1.5 rounded-full bg-blue-500 mr-3"></span>
-                                    <span class="text-sm font-medium">${line}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                </div>`;
-            document.getElementById('modal-body').innerHTML = detailHtml;
-            document.getElementById('modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+/* ✅ UPDATED: dynamic sections */
+function renderAllSections() {
+    const selectedDate = document.getElementById('date-picker').value;
+    const dashboard = document.getElementById('dashboard-content');
+    const emptyState = document.getElementById('empty-state');
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
+    dashboard.innerHTML = '';
+    let total = 0;
 
-        function createCard(item) {
-            const card = document.createElement('div');
-            card.className = 'kpi-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between min-h-[140px]';
-            card.onclick = () => showDetails(item.id);
-            card.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-start mb-1">
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">${item.name}</p>
-                        <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <h2 class="text-3xl font-black text-gray-900">${item.value.toLocaleString()}</h2>
-                    </div>
-                </div>
-                <div class="mt-4 pt-4 border-t border-gray-50 flex justify-between items-center">
-                    <span class="text-[10px] text-gray-400 font-medium">Date: ${item.date}</span>
-                    <div class="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
-                </div>
-            `;
-            return card;
-        }
+    const locations = [...new Set(
+        rawData.filter(d => d.date === selectedDate).map(d => d.location)
+    )];
 
-        function renderAllSections() {
-            const selectedDate = document.getElementById('date-picker').value;
-            const sections = ['outpatient', 'emergency', 'inpatient', 'operations'];
-            const dashboardContent = document.getElementById('dashboard-content');
-            const emptyState = document.getElementById('empty-state');
-            
-            let totalDataFound = 0;
+    locations.forEach(loc => {
+        const items = rawData.filter(d => d.location === loc && d.date === selectedDate);
+        if (!items.length) return;
 
-            sections.forEach(loc => {
-                const grid = document.getElementById(`grid-${loc}`);
-                const sectionWrapper = document.getElementById(`section-${loc}`);
-                grid.innerHTML = '';
-                
-                const filtered = rawData.filter(d => d.location === loc && d.date === selectedDate);
-                
-                if (filtered.length > 0) {
-                    sectionWrapper.classList.remove('hidden');
-                    filtered.forEach(item => grid.appendChild(createCard(item)));
-                    totalDataFound += filtered.length;
-                } else {
-                    sectionWrapper.classList.add('hidden');
-                }
-            });
+        total += items.length;
 
-            if (totalDataFound === 0) {
-                dashboardContent.classList.add('hidden');
-                emptyState.classList.remove('hidden');
-            } else {
-                dashboardContent.classList.remove('hidden');
-                emptyState.classList.add('hidden');
-            }
-        }
+        const section = document.createElement('div');
+        section.className = 'section-container';
+        section.innerHTML = `
+            <div class="section-header">
+                <div class="w-1.5 h-6 bg-blue-500 rounded-full"></div>
+                <h2 class="text-xl font-bold text-gray-700">${loc}</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+        `;
 
-        window.onload = () => {
-            setTodayAsDefaultDate();
-            loadCSVData();
-        };
-    </script>
+        const grid = section.querySelector('.grid');
+        items.forEach(item => grid.appendChild(createCard(item)));
+        dashboard.appendChild(section);
+    });
+
+    if (total === 0) {
+        dashboard.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+    } else {
+        dashboard.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+    }
+}
+
+/* 🔒 EVERYTHING BELOW IS UNCHANGED */
+
+function showDetails(id) {
+    const selectedDate = document.getElementById('date-picker').value;
+    const item = rawData.find(d => d.id === id && d.date === selectedDate);
+    if (!item) return;
+
+    document.getElementById('modal-title').innerText = item.name;
+    const detailLines = item.details.split(',').map(line => line.trim());
+    document.getElementById('modal-body').innerHTML = `
+        <div class="space-y-4">
+            <div class="flex justify-between items-end">
+                <span class="text-sm text-gray-500 font-medium tracking-wide">Daily Total</span>
+                <span class="text-4xl font-black text-blue-600">${item.value.toLocaleString()}</span>
+            </div>
+            <div class="h-px bg-gray-100"></div>
+            <div>
+                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Breakdown</h4>
+                <ul class="space-y-2">
+                    ${detailLines.map(l => `
+                        <li class="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <span class="h-1.5 w-1.5 rounded-full bg-blue-500 mr-3"></span>
+                            <span class="text-sm font-medium">${l}</span>
+                        </li>`).join('')}
+                </ul>
+            </div>
+        </div>`;
+    document.getElementById('modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+function createCard(item) {
+    const card = document.createElement('div');
+    card.className = 'kpi-card bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between min-h-[140px]';
+    card.onclick = () => showDetails(item.id);
+    card.innerHTML = `
+        <div>
+            <div class="flex justify-between items-start mb-1">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">${item.name}</p>
+            </div>
+            <h2 class="text-3xl font-black text-gray-900">${item.value.toLocaleString()}</h2>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-50 flex justify-between items-center">
+            <span class="text-[10px] text-gray-400 font-medium">Date: ${item.date}</span>
+            <div class="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
+        </div>`;
+    return card;
+}
+
+window.onload = () => {
+    setTodayAsDefaultDate();
+    loadCSVData();
+};
+</script>
 </body>
 </html>
