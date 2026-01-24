@@ -12,7 +12,7 @@ emergency,Er_05,Mortality ,2026-01-24,1,No Further Data
 emergency,Er_06,Out Referal,2026-01-24,7,No Further Data
 inpatient,ip_01,Bed Occupancy (%),2026-01-24,95,"IP : 93/94, ICU : 38/39, NICU : 13/13 +1 Capsule"
 inpatient,ip_02,Long Stay 5-7,2026-01-24,0,No Further Data
-inpatient,ip_03,Long Stay > 7,2026-01-24,5,"حليمة احمد | 33 يوم | نسا , احمد ابو المجد | 24 يوم | تجميل , نعمة عبدالهادى | 13 يوم | صدرية , حسن عبده | 8 يوم | عظام , محارب عزيز | 10 | جراحة عامة "
+inpatient,ip_03,Long Stay > 7,2026-01-24,5,"حليمة احمد | 33 يوم | نسا , احمد ابو المجد | 24 يوم | تجميل , نعمة عبدالهادى | 13 يوم | صدرية , حسن عبده | 8 يوم | عظام , محارب عزيز | 10 يوم | جراحة عامة "
 inpatient,Ip_04,Mortality ,2026-01-24,1,No Further Data
 operations,ot_01,Total Surgeries,2026-01-24,15,"Ortho : 8, Plastic : 2, General Surgery : 3, Maxilo : 1, Obs : 1"
 operations,ot_02,Total By Source,2026-01-24,15,"Emergency : 5, Elective : 10"
