@@ -1,6 +1,6 @@
 location,id,name,date,value,details
 outpatient,op_01,Rate,2026-01-24,786,"AM : 533, PM : 253"
-outpatient,op_02,Slots,2026-01-24,38,"AM : 12, PM : 7"
+outpatient,op_02,Slots,2026-01-24,19,"AM : 12, PM : 7"
 outpatient,op_03,Waiting 2-5,2026-01-24,26,No Wait
 outpatient,op_04,Waiting > 5,2026-01-24,412,"Neurosurgery, Ortho"
 outpatient,op_05,Admission,2026-01-24,N/A,No Further Data
